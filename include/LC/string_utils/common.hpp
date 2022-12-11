@@ -8,6 +8,7 @@
 namespace lc
 {
 	constexpr std::vector<std::string_view> split(std::string_view str, const std::string_view& delimiter, bool skipEmpty = false);
+	constexpr std::vector<std::string> splitString(const std::string str, const std::string_view& delimiter, bool skipEmpty = false);
 	constexpr std::string join(const std::vector<std::string_view>& strs, const std::string_view& delimiter);
 	constexpr std::string join(const std::vector<std::string>& strs, const std::string_view& delimiter);
 	constexpr std::string indent(std::string_view str, int count = 1, const std::string_view& style = "    ");
@@ -32,6 +33,21 @@ namespace lc
 
 		// https://gist.github.com/tcmug/9712f9192571c5fe65c362e6e86266f8
 		vector<string_view> result;
+		size_t from = 0, to = 0;
+		while (string::npos != (to = str.find(delimiter, from))) {
+			result.push_back(str.substr(from, to - from));
+			from = to + delimiter.length();
+		}
+		result.push_back(str.substr(from, to));
+		return result;
+	}
+
+	constexpr std::vector<std::string> splitString(const std::string str, const std::string_view& delimiter, bool skipEmpty = false)
+	{
+		using std::string;
+		using std::vector;
+
+		vector<string> result;
 		size_t from = 0, to = 0;
 		while (string::npos != (to = str.find(delimiter, from))) {
 			result.push_back(str.substr(from, to - from));
