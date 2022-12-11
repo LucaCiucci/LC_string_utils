@@ -42,7 +42,7 @@ namespace lc
 		return result;
 	}
 
-	constexpr std::vector<std::string> splitString(const std::string str, const std::string_view& delimiter, bool skipEmpty = false)
+	constexpr std::vector<std::string> splitString(const std::string str, const std::string_view& delimiter, bool skipEmpty)
 	{
 		using std::string;
 		using std::vector;
