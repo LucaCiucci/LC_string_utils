@@ -13,6 +13,7 @@ namespace lc
 	constexpr std::string indent(std::string_view str, int count = 1, const std::string_view& style = "    ");
 	inline constexpr size_t replace_all(std::string& inout, std::string_view what, std::string_view with);
 	inline constexpr std::pair<std::string, size_t> creplace_all(const std::string& inout, std::string_view what, std::string_view with);
+	constexpr std::vector<std::string> concatenate(const std::vector<std::string>& strsA, const std::vector<std::string>& strsB);
 }
 
 // ================================================================================================================================
@@ -101,5 +102,17 @@ namespace lc
 		string result = inout;
 		size_t count = replace_all(result, what, with);
 		return { result, count };
+	}
+
+	constexpr std::vector<std::string> concatenate(const std::vector<std::string>& strsA, const std::vector<std::string>& strsB)
+	{
+		using std::string;
+		using std::vector;
+
+		vector<string> result;
+		result.reserve(strsA.size() + strsB.size());
+		result.insert(result.end(), strsA.begin(), strsA.end());
+		result.insert(result.end(), strsB.begin(), strsB.end());
+		return result;
 	}
 }
