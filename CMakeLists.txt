@@ -3,6 +3,7 @@
 cmake_minimum_required(VERSION 3.20)
 
 project(LC_string_utils)
+message(STATUS "Project: ${PROJECT_NAME} ${PROJECT_VERSION} (${CMAKE_BUILD_TYPE})")
 
 add_library(LC_string_utils)
 
